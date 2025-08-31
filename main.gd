@@ -31,6 +31,7 @@ func new_game():
 	generate_pipes()
 	$Bird.reset()
 	$EndScreen.hide()
+	$WinScreen.hide()
 	
 	
 
@@ -81,10 +82,12 @@ func scored():
 
 func check_top():
 	if $Bird.position.y < 0:
+		print("magas")
 		$Bird.falling = true
 		stop_game()
 
 func stop_game():
+	print("stopped")
 	$PipeTimer.stop()
 	$Bird.flying = false
 	game_running = false
@@ -92,14 +95,39 @@ func stop_game():
 	$EndScreen.show()
 
 func bird_hit():
+	print("hit")
 	$Bird.falling = true
 	stop_game()
 
 
 func _on_ground_hit():
+	print("ground")
 	$Bird.falling = false
 	stop_game()
 
 
 func _on_end_screen_restart() -> void:
+	new_game()
+
+
+func _on_back_side_hit() -> void:
+	print("too back on main")
+	$Bird.falling = false
+	stop_game()
+
+
+func _on_win_win() -> void:
+	print("won")
+	$Bird.falling = false
+	win_game()
+
+func win_game():
+	$PipeTimer.stop()
+	$Bird.flying = false
+	game_running = false
+	game_over = true
+	$WinScreen.show()
+
+
+func _on_win_screen_restart() -> void:
 	new_game()

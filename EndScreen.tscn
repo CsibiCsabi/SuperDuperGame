@@ -24,4 +24,15 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ekb8w")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lmk8k")
 theme_override_styles/normal = SubResource("StyleBoxTexture_8dv01")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 296.0
+offset_top = 277.0
+offset_right = 559.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(0.211765, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "You've lost! L!"
+
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

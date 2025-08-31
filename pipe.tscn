@@ -1,22 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceb185n8ehogl"]
+[gd_scene load_steps=6 format=3 uid="uid://ceb185n8ehogl"]
 
 [ext_resource type="Script" uid="uid://gnkpf8oyfl0d" path="res://pipe.gd" id="1_78010"]
 [ext_resource type="Texture2D" uid="uid://cau7y50yf4ffs" path="res://pipe (1).png" id="2_arayy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1uqvy"]
-size = Vector2(78, 36)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3wvs"]
-size = Vector2(70, 530)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_08mfy"]
-size = Vector2(78, 36)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp7r7"]
-size = Vector2(70, 525)
+size = Vector2(65, 555)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78010"]
 size = Vector2(38, 230)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arayy"]
+size = Vector2(66, 558)
 
 [node name="Pipe" type="Area2D" groups=["pipes"]]
 script = ExtResource("1_78010")
@@ -25,32 +19,30 @@ script = ExtResource("1_78010")
 texture = ExtResource("2_arayy")
 offset = Vector2(0, 400)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 138)
-shape = SubResource("RectangleShape2D_1uqvy")
+[node name="upper body" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 419)
-shape = SubResource("RectangleShape2D_i3wvs")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upper body"]
+position = Vector2(-1.5, -405.5)
+shape = SubResource("RectangleShape2D_1uqvy")
 
 [node name="upper" type="Sprite2D" parent="."]
 texture = ExtResource("2_arayy")
 offset = Vector2(0, -400)
 flip_v = true
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(0, -137)
-shape = SubResource("RectangleShape2D_08mfy")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -418)
-shape = SubResource("RectangleShape2D_qp7r7")
-
 [node name="Scorearea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scorearea"]
 position = Vector2(41, 0)
 shape = SubResource("RectangleShape2D_78010")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 399)
+shape = SubResource("RectangleShape2D_arayy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Scorearea" to="." method="_on_scorearea_body_entered"]

@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 
+
 const GRAVITY = 1000
 const MAX_VEL = 600
-const FLAP_SPEED = -500
+const FLAP_SPEED = -400
 var flying = false
 var falling = false
 const START_POS = Vector2(100, 400)
@@ -12,6 +13,7 @@ func _ready():
 	reset()
 
 func reset():
+	velocity = Vector2(0,0)
 	falling = false
 	flying = false
 	position = START_POS
@@ -19,6 +21,12 @@ func reset():
 	
 func _physics_process(delta):
 	if flying or falling:
+		# new
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			velocity = velocity.bounce(collision.get_normal()) 
+		
+		
 		velocity.y += GRAVITY * delta
 		if velocity.y >= MAX_VEL:
 			velocity.y = MAX_VEL
@@ -37,4 +45,5 @@ func flap():
 
 
 func _on_ground_hit() -> void:
+	print("ground")
 	falling = false

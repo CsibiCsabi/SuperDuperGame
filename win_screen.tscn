@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ef0dixy57d6"]
+
+[ext_resource type="Script" uid="uid://bpa12pxslrjab" path="res://win_screen.gd" id="1_wmwda"]
+[ext_resource type="Texture2D" uid="uid://dfgdya6flwrjb" path="res://restart.png" id="2_l5t5q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ekb8w"]
+texture = ExtResource("2_l5t5q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lmk8k"]
+texture = ExtResource("2_l5t5q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8dv01"]
+texture = ExtResource("2_l5t5q")
+
+[node name="WinScreen" type="CanvasLayer"]
+script = ExtResource("1_wmwda")
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 342.0
+offset_top = 350.0
+offset_right = 502.0
+offset_bottom = 413.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_ekb8w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lmk8k")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8dv01")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 308.0
+offset_top = 203.0
+offset_right = 562.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(0.0352941, 0.698039, 0.0823529, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.282353, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "You've won!
+Good job!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
